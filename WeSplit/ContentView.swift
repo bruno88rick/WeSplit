@@ -27,6 +27,14 @@ struct ContentView: View {
         
     }
     
+    var totalPlusTip: Double {
+        checkAmount + (checkAmount * Double(tipPercentage) / 100)
+    }
+    
+    var currencyStandard: String {
+        Locale.current.currency?.identifier ?? "BRL"
+    }
+    
     var body: some View {
         NavigationStack{
             Form {
@@ -44,17 +52,23 @@ struct ContentView: View {
                 }
                 Section("How much tip do you want to Leave?"){
                     Picker("Tip Percentage", selection: $tipPercentage) {
-                        ForEach(tipPercentages, id: \.self) {
+                        ForEach(0..<101) {
                             Text($0, format: .percent)
                         }
                     }
-                    .pickerStyle(.segmented)
+                    .pickerStyle(.navigationLink)
                 }
                 Section("The Amount per Person is:") {
                     Text(totalPerPerson, format: .currency(code: Locale.current.currency?.identifier ?? "BRL"))
                 }
+                Section("Sumary of the Amount Check:"){
+                    Text("Total Amount + Tip:")
+                    Text(totalPlusTip, format: .currency(code: Locale.current.currency?.identifier ?? "BRL"))
+                    Text("Tip selected: \(tipPercentage) %")
+                    Text("People to Split: \(numberOfPeople)")
+                }
             }
-            Text("Version: V1.0")
+            Text("Version: V1.1")
             .navigationTitle("Include WeSplit")
             .toolbar {
                 if amountIsFocused {
