@@ -54,6 +54,7 @@ struct ContentView: View {
                     Text(totalPerPerson, format: .currency(code: Locale.current.currency?.identifier ?? "BRL"))
                 }
             }
+            Text("Version: V1.0")
             .navigationTitle("Include WeSplit")
             .toolbar {
                 if amountIsFocused {
