@@ -65,7 +65,7 @@ struct ContentView: View {
                     Text("Total Amount + Tip:")
                     Text(totalPlusTip, format: .currency(code: Locale.current.currency?.identifier ?? "BRL"))
                     Text("Tip selected: \(tipPercentage) %")
-                    Text("People to Split: \(numberOfPeople)")
+                    Text("People to Split: \(numberOfPeople + 2)")
                 }
             }
             Text("Version: V1.1")
